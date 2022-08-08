@@ -1,5 +1,6 @@
 package com.yijingjj;
 
+import java.io.*;
 import java.util.*;
 
 public class Day09 {
@@ -8,9 +9,9 @@ public class Day09 {
         /**
          * 集合
          * 接口：Set List Map
-         *List：ArrayList ， LinkedList  有序
-         * Map：HashMap TreeMap 无序
-         * Set: HashSet TreeSet 无序
+         *List：ArrayList ， LinkedList  有序 可以出现重复的元素
+         * Map：HashMap TreeMap 无序    key 唯一的，不能重复
+         * Set: HashSet TreeSet 无序    不能有重复的元素
          * */
 //        Collection collection = new Collection()
         int[] nums = {12, 23, 45, 36, 47, 555};
@@ -60,10 +61,54 @@ public class Day09 {
         }
         System.out.println("===============================================");
 //        Set set3 = new HashSet();
-        Set set3 =new TreeSet();  // 填充同一种数据类型
+        Set set3 = new TreeSet();  // 填充同一种数据类型
         set3.add("王麻子");
         set3.add("hello");
         set3.add("555");
         System.out.println(Arrays.toString(set3.toArray()));
+    }
+}
+
+class Day09_1 {
+    public static void main(String[] args) throws IOException {
+        File file01 = new File("E:\\File");
+        File file = new File("E:\\");
+        System.out.println(file.exists());
+        if (!file01.exists()) {
+            file01.mkdir();
+        }
+//        file.createNewFile();
+//        file01.delete();
+        System.out.println("目录" + file01.isDirectory());
+        System.out.println("文件" + file01.isFile());
+        String[] files = file.list();
+        System.out.println(Arrays.toString(files));
+        System.out.println(file.exists());
+
+        System.out.println("===============================================");
+        File file02 = new File("E:\\File//1.txt");
+        file02.createNewFile();
+
+        // 输出流
+        OutputStream outputStream = new FileOutputStream(file02);
+        byte[] _bytes = "aaaaaaaaaaaaaaaaaaaabbbbbbbbbbbbbbbbbbbbbbccccccccccccccccccc".getBytes();
+        outputStream.write(_bytes);
+
+        // 关闭流
+        outputStream.close();
+
+        // 输入流
+        InputStream inputStream = new FileInputStream(file02);
+        // 演示的读取一个字节数据
+//        int num = inputStream.read();
+//        System.out.println((char) num);
+
+        byte[] bytes = new byte[200];
+//        inputStream.skip(10);
+        int num2 = inputStream.read(bytes);
+        System.out.println(num2);
+        System.out.println(new String(bytes));
+        // 关闭
+        inputStream.close();
     }
 }
