@@ -110,5 +110,51 @@ class Day09_1 {
         System.out.println(new String(bytes));
         // 关闭
         inputStream.close();
+
+        System.out.println("===============================================");
+        byte[] bytes2 = new byte[100];
+        for (byte i = 0; i < 100; i++) {
+            if (i % 2 == 0) {
+                bytes2[i] += i;
+                System.out.print(bytes2[i] + "  ");
+            }
+
+        }
+        System.out.println(bytes2[98]);
+        ByteArrayOutputStream out = new ByteArrayOutputStream();
+        out.write(bytes2);
+        out.close();
+//        System.out.println(byteArrayOut.size());
+//        System.out.println(Arrays.toString(byteArrayOut.toByteArray()));
+        ByteArrayInputStream in = new ByteArrayInputStream(out.toByteArray());
+        byte[] bytes3 = new byte[80];
+        in.read(bytes3, 10, 70);
+        System.out.println(Arrays.toString(bytes3));
+
+        System.out.println("===============================================");
+        String str = "ke,yijincc.com";
+        String str2 = "qianyu";
+        String str3 = "Hello World!!!";
+        char ch = '易';
+        CharSequence ch_seq = "易";
+        CharSequence ch_seq1 = "World!!";
+
+        Writer writer = new FileWriter("E:\\File//2.txt");
+        writer.write(str, 3, 7);
+        writer.write(str2);
+        writer.write(str3);
+        writer.append(ch_seq1, 1, 4);
+        writer.append(ch);
+        writer.flush();
+        writer.close();
+
+        char[] bytes4 = new char[100];
+        char[] bytes5 = new char[100];
+        Reader reader = new FileReader("E:\\File//2.txt");
+//        reader.read(bytes4);
+//        System.out.println(bytes4);
+        reader.read(bytes5, 5, 10);
+        System.out.println(bytes5);
+        reader.close();
     }
 }
