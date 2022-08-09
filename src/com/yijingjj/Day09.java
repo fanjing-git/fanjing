@@ -2,6 +2,7 @@ package com.yijingjj;
 
 import java.io.*;
 import java.util.*;
+import java.util.zip.Adler32;
 
 public class Day09 {
 
@@ -70,6 +71,29 @@ public class Day09 {
 }
 
 class Day09_1 {
+    /**
+     * java.io.File
+     *
+     * java.io.InputStream
+     *      java.io.FileInputStream  文件流
+     *      java.io.ByteArrayInputStream
+     *      java.io.ObjectInputStream 对象流
+     *      java.io.BufferedInputStream 缓冲流
+     *      java.io.InputStreamReader 转换流
+     * java.io.OutputStream
+     *      java.io.FileOutputStream 文件流
+     *      java.io.ByteArrayOutputStream
+     *      java.io.ObjectOutputStream 对象流
+     *      java.io.BufferedOutputStream 缓冲流
+     *      java.io.OutputStreamWriter 转换流
+     *
+     * java.io.Reader
+     *      java.io.FileReader 文件流
+     *      java.io.BufferedReader 缓冲流
+     * java.io.Writer
+     *      java.io.FilerWriter 文件流
+     *      java.io.BufferedWriter 缓冲流
+     * */
     public static void main(String[] args) throws IOException {
         File file01 = new File("E:\\File");
         File file = new File("E:\\");
@@ -127,8 +151,8 @@ class Day09_1 {
 //        System.out.println(byteArrayOut.size());
 //        System.out.println(Arrays.toString(byteArrayOut.toByteArray()));
         ByteArrayInputStream in = new ByteArrayInputStream(out.toByteArray());
-        byte[] bytes3 = new byte[80];
-        in.read(bytes3, 10, 70);
+        byte[] bytes3 = new byte[40];
+        in.read(bytes3, 0, 30);
         System.out.println(Arrays.toString(bytes3));
 
         System.out.println("===============================================");
@@ -156,5 +180,16 @@ class Day09_1 {
         reader.read(bytes5, 5, 10);
         System.out.println(bytes5);
         reader.close();
+
+        System.out.println("===============================================");
+
+        Adler32 adler32 = new Adler32();
+        adler32.update(bytes3);
+        System.out.println(adler32.getValue());  // 351273341
+//        java.util.zip.GZIPInputStream
+//        java.util.zip.GZIPOutputStream
+//        java.util.zip.ZipInputStream
+//        java.util.zip.ZipOutputStream
     }
 }
+
